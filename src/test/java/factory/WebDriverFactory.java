@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import settings.ChromeSettings;
 
+
 public class WebDriverFactory {
 
     private String browserName = System.getProperty("browser");
