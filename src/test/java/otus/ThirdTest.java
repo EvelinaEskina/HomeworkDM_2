@@ -29,7 +29,6 @@ public class ThirdTest {
         driver = new WebDriverFactory().getDriver();
         driver.manage().window().maximize();
         System.out.println(driver.manage().window().getSize());
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @AfterEach
@@ -51,8 +50,6 @@ public class ThirdTest {
 
         WebElement button = driver.findElement(By.cssSelector("#sampleForm > button"));
         button.click();
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
         WebElement messageBox = driver.findElement(By.cssSelector("#messageBox"));
         assertThat(messageBox.getText())

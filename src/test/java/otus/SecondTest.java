@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
@@ -29,8 +30,8 @@ public class SecondTest {
     @BeforeEach
     public void webDriverStart() {
         driver = new WebDriverFactory().getDriver();
-        //driver.manage().window().minimize();
-        //System.out.println(driver.manage().window().getSize());
+        driver.manage().window().minimize();
+        System.out.println(driver.manage().window().getSize());
     }
 
     @AfterEach
@@ -39,23 +40,16 @@ public class SecondTest {
             driver.quit();
     }
 
-    @Test
-   public void windowTest() {
-        driver.manage().window().minimize();
-        System.out.println(driver.manage().window().getSize());
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-   }
 
     @Test
     public void clickModalWindow() {
         driver.get(baseUrl);
         WebElement modalBtn = driver.findElement(By.id("openModalBtn"));
+        WebElement modalWindow = driver.findElement(By.cssSelector("#myModal > div > h2"));
+        Assertions.assertFalse(modalWindow.isDisplayed(),"Модальное окно найдено");
         modalBtn.click();
+        Assertions.assertFalse(modalWindow.isDisplayed(),"Модальное окно открыто");
 
-
-
-       WebElement modalWindow = driver.findElement(By.cssSelector("#myModal > div > h2"));
-       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
        assertThat(modalWindow.getText())
                .as("Это модальное окно",modalWindow)
                .isEqualTo(modalWindow);

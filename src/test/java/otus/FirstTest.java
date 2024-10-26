@@ -45,7 +45,6 @@ public class FirstTest {
         driver.get(baseUrl);
        WebElement textBox = driver.findElement(By.id("textInput"));
        textBox.sendKeys("OTUS");
-       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
        Assertions.assertEquals("OTUS",textBox.getAttribute("value"));
     }
 
